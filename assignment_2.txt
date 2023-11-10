@@ -1,0 +1,84 @@
+QA UI Automation Test
+
+//add 4 types of sweets and checkout
+
+driver.get("https://sweetshop.netlify.app/");
+//Browse sweets
+driver.findElement(By.xpath("//a[@class='btn btn-primary btn-lg sweets']");
+//Click on sweets 
+//define number of clicks for each sweet
+
+int numchoccups=4;
+int numstraws=3;
+int numdiscs=2;
+int numbons=1;
+
+for (int i=1;i=<numchoccups;i++)
+{	
+driver.findElement(By.xpath("//a[@data-name='Chocolate Cups']").click();
+}
+
+for (int i=1;i=<numstraws;i++)
+{	
+driver.findElement(By.xpath("//a[@data-name='Sherbert Straws']").click();
+}
+
+for (int i=1;i=<numdiscs;i++)
+{	
+driver.findElement(By.xpath("//a[@data-name='Sherbert Discs']").click();
+}
+
+for (int i=1;i=<numbons;i++)
+{	
+driver.findElement(By.xpath("//a[@data-name='Strawberry Bon Bons']").click();
+}
+
+//Go to basket
+driver.findElement(By.xpath("//a[@href='/basket']").click();
+
+//Change delivery type to Standard
+driver.findElement(By.xpath("//label[@for='exampleRadios2']").click();
+
+
+
+//Verify selected items are present in basket(4 items with their names)
+
+String[] itemsNeeded={"Chocolate Cups","Sherbert Straws","Sherbert Discs","Strawberry Bon Bons"};
+int countofitems=0;
+List<WebElemnts> cartitems= driver.findElements(By.xpath("//h6[@class='my-0']"));
+for (int i=1;i<=4;i++)
+{
+	String itemname=cartitems.get(i).getText();
+	List ItemsNeededList=Arrays.asList(itemsNeeded);
+	if( ItemsNeededList.contains(itemname))
+	{ 
+		countofitems++;
+		if(countofitems==4)
+			break;
+	}
+}
+	
+
+
+
+//Test the total price in GBP is correct
+//Considering expected price as 100
+
+String actualPrice=driver.findElement(By.xpath("//li[@class='list-group-item d-flex justify-content-between']/strong")).getText()
+String expectedPrice=100;
+asset.assetEquals(actualPrice,100);
+
+
+
+
+//Fill the details and click on checkout.
+
+driver.findElement(By.xpath("//input[@id='name']/parent::div/label[text()='First name']").sendKeys("Neha");
+driver.findElement(By.xpath("//input[@id='name']/parent::div/label[text()='Last name']").sendKeys("P");
+driver.findElement(By.xpath("//input[@id='email']").sendKeys("abc@de.com");
+
+
+
+//Checkout
+driver.findelemnt(By.xpath("//button[text()='Continue to checkout']").click();
+

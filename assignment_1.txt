@@ -1,0 +1,47 @@
+QA API Automation Test
+Task 1
+
+
+//Read the .csv file and extract the Breeds provided. 
+
+import pandas as pd
+import numpy as np
+df=pd.read_csv("2017.csv")
+print("The data set is:")
+print(df)
+dog_breeds=df["Breeds"]
+print("The column is:")
+print(dog_breeds)
+
+//Normalize the breed names by removing all whitespacing and making them all lowercase. 
+
+df['dog_breeds'] = df['dog_breeds'].str.lower()
+
+//eliminate all of the duplicates.
+
+distinctdogs = emp.drop_duplicates(['dog_breeds'],keep='first') 
+print('Distinct dogs in the csv:\n', distinctdogs)
+
+
+
+
+Task 2:
+
+The site https://dog.ceo/dog-api/ provides several endpoints to obtain data related to dog breeds. 
+Make a request to the endpoint and create a list of individual dog breeds from the response received. 
+
+
+String dog_breeds= RestAssured.given().accept("Content-Type","application/json").
+when().get("https://dog.ceo/api/breeds/list/all").
+then().assetThat().statusCode(200).then().response().asString();
+
+JsonPath js=new jsonPath(dog_breeds);
+js.getString("message");
+
+
+
+
+
+
+
+
